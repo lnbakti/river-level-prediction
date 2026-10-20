@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>Detail Data Sensor | Water Level System</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" name="viewport"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="/assets/fonts/inter/inter.css" id="main-font-link" rel="stylesheet"/>
+<link href="/assets/fonts/tabler-icons.min.css" rel="stylesheet"/>
+<link href="/assets/fonts/feather.css" rel="stylesheet"/>
+<link href="/assets/css/style.css?v=174" id="main-style-link" rel="stylesheet"/>
+<link href="/assets/css/style-preset.css" rel="stylesheet"/>
+<link href="data:," rel="icon"/>
+<style>
+            .hover-primary:hover { color: var(--bs-primary) !important; }
+            .transition-all { transition: all 0.2s ease-in-out; }
+            .detail-label { font-size: 0.8rem; letter-spacing: 0.5px; }
+            .value-text { font-size: 1.15rem; }
+        </style>
+</head>
+<body data-pc-layout="vertical" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-theme="light">
+<div class="loader-bg">
+<div class="loader-track">
+<div class="loader-fill"></div>
+</div>
+</div>
+<div id="sidebar-container"></div>
+<div id="header-container"></div>
+<div class="pc-container">
+<div class="pc-content">
+
+                <div class="row mb-5 align-items-center">
+                    <div class="col-12 d-flex align-items-center justify-content-between" style="padding: 0 48px !important;">
+                        <div class="d-flex align-items-center gap-2">
+                            
+                            <h3 class="m-0 fw-bolder text-dark" style="letter-spacing: -0.3px;">Detail Data Sensor</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-12" style="padding: 0 48px !important;">
+    <div class="mb-5">
+<h5 class="fw-bold mb-4 text-dark border-bottom border-secondary border-opacity-25 pb-2">Informasi Waktu</h5>
+<div class="row gy-4 gx-5">
+<div class="col-sm-4">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label">Tanggal</span>
+<span class="value-text fw-bolder text-dark" id="detail-tanggal">-</span>
+</div>
+<div class="col-sm-4">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label">Pukul</span>
+<span class="value-text fw-bolder text-dark" id="detail-pukul">-</span>
+</div>
+<div class="col-sm-4">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label">Waktu Masuk</span>
+<span class="value-text fw-bolder text-dark" id="detail-waktu-masuk">-</span>
+                    </div>
+                </div>
+    
+<div>
+<h5 class="fw-bold mt-5 mb-4 text-dark border-bottom border-secondary border-opacity-25 pb-2">Data Pengukuran Sensor</h5>
+<div class="row gy-4 gx-5">
+<div class="col-sm-6">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label">Tinggi Aktual</span>
+<span class="display-5 fw-bolder text-primary d-block" id="detail-aktual" style="color: #0d6efd !important;">- cm</span>
+<span class="text-dark text-opacity-75 fw-medium mt-2 d-block">Pembacaan ketinggian air sungai secara real-time.</span>
+</div>
+<div class="col-sm-6">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label">Curah Hujan</span>
+<span class="display-5 fw-bolder text-info d-block" id="detail-hujan" style="color: #0dcaf0 !important;">- mm</span>
+<span class="text-dark text-opacity-75 fw-medium mt-2 d-block">Intensitas hujan pada area sensor.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="mt-5 mb-4 d-flex justify-content-end align-items-center">
+    <a href="/monitoring" class="btn btn-secondary px-4 py-2 fw-bold d-flex align-items-center gap-2 shadow-sm" style="border-radius: 8px;">
+        <i class="ti ti-arrow-left"></i> Kembali
+    </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer-container"></div>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/static/js/api.js?v=174"></script>
+<script src="/static/js/pages/monitoring_detail.js?v=174"></script>
+<script src="/static/js/layout.js?v=174"></script>
+<script>lucide.createIcons();</script>
+<script src="/assets/js/plugins/bootstrap.min.js"></script>
+<script src="/assets/js/script.js"></script>
+</body>
+</html>

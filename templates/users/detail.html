@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>Detail Pengguna | Water Level System</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" name="viewport"/>
+<link href="/assets/fonts/inter/inter.css" id="main-font-link" rel="stylesheet"/>
+<link href="/assets/fonts/tabler-icons.min.css" rel="stylesheet"/>
+<link href="/assets/css/style.css?v=174" id="main-style-link" rel="stylesheet"/>
+<link href="data:," rel="icon"/>
+</head>
+<body data-pc-layout="vertical" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-theme="light">
+<div id="sidebar-container"></div>
+<div id="header-container"></div>
+<div class="pc-container">
+<div class="pc-content">
+
+                <div class="row mb-5 align-items-center">
+                    <div class="col-12 d-flex align-items-center justify-content-between" style="padding: 0 48px !important;">
+                        <div class="d-flex align-items-center gap-2">
+                            
+                            <h3 class="m-0 fw-bolder text-dark" style="letter-spacing: -0.3px;">Detail Pengguna</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-12" style="padding: 0 48px !important;">
+    <div class="mb-5">
+<h5 class="fw-bold mb-4 text-dark border-bottom border-secondary border-opacity-25 pb-2">Informasi Akun</h5>
+<div class="row gy-4 gx-5">
+<div class="col-sm-6">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Nama Lengkap</span>
+<span class="fs-5 fw-bolder text-dark" id="detail-user-fullname">-</span>
+</div>
+<div class="col-sm-6">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Username</span>
+<span class="fs-5 fw-bolder text-dark" id="detail-user-username">-</span>
+</div>
+<div class="col-sm-6">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Status Keanggotaan</span>
+<div class="mt-1" id="detail-user-status">
+                    </div>
+                </div>
+    
+</div>
+<div>
+<h5 class="fw-bold mt-5 mb-4 text-dark border-bottom border-secondary border-opacity-25 pb-2">Informasi Kontak &amp; Alamat</h5>
+<div class="row gy-4 gx-5">
+<div class="col-sm-6">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Nomor WhatsApp</span>
+<span class="fs-5 fw-bolder text-primary" id="detail-user-wa">-</span>
+</div>
+<div class="col-sm-12">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Alamat</span>
+<div class="p-3 bg-light rounded text-dark mt-2" id="detail-user-address" style="white-space: pre-wrap;">-</div>
+</div>
+</div>
+</div>
+<div class="mt-5 mb-4 d-flex justify-content-end align-items-center">
+
+<a href="/users" class="btn btn-secondary px-4 py-2 fw-bold d-flex align-items-center gap-2 shadow-sm" style="border-radius: 8px;">
+<i class="ti ti-arrow-left"></i> Kembali
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+
+<div id="footer-container"></div>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/static/js/api.js?v=174"></script>
+<script>
+(() => {
+    const dataStr = sessionStorage.getItem('detailUserData');
+    if (!dataStr) {
+        document.querySelector('.pc-content').innerHTML = `
+<div class="text-center py-5">
+    <div class="avtar avtar-xl bg-light-warning rounded-circle mb-4 mx-auto">
+        <i class="ti ti-alert-triangle text-warning" style="font-size: 2.5rem"></i>
+    </div>
+    <h4 class="fw-bold mb-3">Sesi Data Hilang</h4>
+    <p class="text-muted mb-4">Sistem kehilangan jejak data sementara Anda akibat muat ulang halaman (refresh) atau tab baru.</p>
+    <a href="/users" class="btn btn-primary px-4 py-2" style="border-radius: 8px;">Kembali ke Tabel Utama</a>
+</div>`;
+        return;
+    }
+    const ds = JSON.parse(dataStr);
+    document.getElementById("detail-user-fullname").textContent = ds.fullname;
+    document.getElementById("detail-user-username").textContent = ds.username;
+    document.getElementById("detail-user-wa").textContent = ds.wa;
+    document.getElementById("detail-user-address").textContent = ds.address || "-";
+    
+    const statusDiv = document.getElementById("detail-user-status");
+    if (ds.statusText && ds.statusClass) {
+        statusDiv.innerHTML = `<span class="badge ${ds.statusClass} px-3 py-2 fs-6 rounded-pill">${ds.statusText}</span>`;
+    }
+
+})();
+</script>
+<script src="/static/js/layout.js?v=174"></script>
+<script src="/assets/js/plugins/bootstrap.min.js"></script>
+<script src="/assets/js/script.js"></script>
+</body>
+</html>

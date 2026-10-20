@@ -1,0 +1,432 @@
+﻿<!doctype html>
+<html lang="en">
+    <head>
+        <title>Register | Water Level System</title>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"
+        />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <style>
+            .hidden {
+                display: none !important;
+            }
+            .form-control.is-invalid,
+            .form-control.is-valid {
+                background-image: none !important;
+                padding-right: inherit !important;
+            }
+        </style>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <link
+            rel="stylesheet"
+            href="/assets/fonts/inter/inter.css"
+            id="main-font-link"
+        />
+        <link rel="stylesheet" href="/assets/fonts/tabler-icons.min.css" />
+        <link rel="stylesheet" href="/assets/fonts/feather.css" />
+        <link rel="stylesheet" href="/assets/fonts/fontawesome.css" />
+        <link rel="stylesheet" href="/assets/fonts/material.css" />
+        <link
+            rel="stylesheet"
+            href="/assets/css/style.css?v=174"
+            id="main-style-link"
+        />
+        <link rel="stylesheet" href="/assets/css/style-preset.css" />
+
+        <style>
+            /* Fix untuk ukuran icon Lucide agar menyesuaikan dengan container / font-size */
+            .lucide {
+                width: 1em !important;
+                height: 1em !important;
+            }
+        </style>
+    <link rel="icon" href="data:,">
+    </head>
+    <body
+        data-pc-preset="preset-1"
+        data-pc-sidebar-caption="true"
+        data-pc-layout="vertical"
+        data-pc-direction="ltr"
+        data-pc-theme_contrast=""
+        data-pc-theme="light"
+    >
+        <div class="loader-bg">
+            <div class="loader-track">
+                <div class="loader-fill"></div>
+            </div>
+        </div>
+        <div class="auth-main">
+            <div class="auth-wrapper v1">
+                <div class="auth-form">
+                    <div class="card shadow-sm my-5">
+                        <div class="card-body p-4 p-md-5">
+                            <div id="register-step-1">
+                                <div class="text-center mb-4">
+                                    <div
+                                        class="avtar avtar-l bg-light-primary rounded-circle mb-3 text-primary mx-auto d-none"
+                                    >
+                                        <i
+                                            data-lucide="user-plus"
+                                            class="fs-2"
+                                        ></i>
+                                    </div>
+                                    <h3 class="fw-bold mb-2">
+                                        Daftar Akun Pengguna
+                                    </h3>
+                                    <p class="text-muted mb-0">
+                                        Daftar untuk menerima peringatan dini
+                                        melalui WhatsApp.
+                                    </p>
+                                </div>
+                                <form id="register-form">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label"
+                                            >Nama Lengkap
+                                            <span class="text-danger"
+                                                >*</span
+                                            ></label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="reg-nama"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="form-label"
+                                            >Username
+                                            <span class="text-danger"
+                                                >*</span
+                                            ></label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="reg-username"
+                                            required
+                                        />
+                                        <div class="invalid-feedback">
+                                            Username hanya boleh berisi huruf
+                                            kecil, angka, titik (.), strip (-),
+                                            atau underscore (_). Titik dan strip
+                                            tidak boleh di awal/akhir. Minimal 3
+                                            karakter.
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="form-label"
+                                            >Nomor WhatsApp
+                                            <span class="text-danger"
+                                                >*</span
+                                            ></label
+                                        >
+                                        <div class="position-relative">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="reg-nowa"
+                                                oninput="
+                                                    if (window.handlePhoneInput)
+                                                        window.handlePhoneInput(
+                                                            event,
+                                                        );
+                                                "
+                                                required
+                                            />
+                                            <div class="invalid-feedback">
+                                                Nomor WhatsApp sudah terdaftar.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 mb-4">
+                                        <div class="col-sm-6 form-group mb-0">
+                                            <label class="form-label"
+                                                >Password
+                                                <span class="text-danger"
+                                                    >*</span
+                                                ></label
+                                            >
+                                            <div class="position-relative">
+                                                <input
+                                                    type="password"
+                                                    class="form-control pe-5"
+                                                    id="reg-password"
+                                                    name="password"
+                                                    required
+                                                />
+                                                <span
+                                                    class="position-absolute top-0 end-0 me-3"
+                                                    style="
+                                                        cursor: pointer;
+                                                        z-index: 10;
+                                                        margin-top: 10px;
+                                                    "
+                                                    onclick="
+                                                        toggleEye(
+                                                            this,
+                                                            'reg-password',
+                                                        )
+                                                    "
+                                                >
+                                                    <i
+                                                        data-lucide="eye"
+                                                        class="fs-5"
+                                                    ></i>
+                                                </span>
+                                                <div class="invalid-feedback">
+                                                    Password minimal 8 karakter,
+                                                    wajib mengandung huruf
+                                                    besar, kecil, dan angka.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 form-group mb-0">
+                                            <label class="form-label"
+                                                >Konfirmasi Password
+                                                <span class="text-danger"
+                                                    >*</span
+                                                ></label
+                                            >
+                                            <input
+                                                type="password"
+                                                class="form-control"
+                                                id="reg-password-confirm"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                    <button
+                                        type="submit"
+                                        class="btn btn-primary w-100 fw-bold py-2 mb-4 shadow-sm"
+                                        id="btn-register"
+                                    >
+                                        Registrasi Akun
+                                    </button>
+                                    <div class="text-center">
+                                        <p class="mb-0 text-muted">
+                                            Sudah punya akun?
+                                            <a
+                                                href="/login"
+                                                class="text-primary fw-bold text-decoration-none"
+                                                >Login</a
+                                            >
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                            <div
+                                id="register-step-2"
+                                class="hidden position-relative"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn-close position-absolute top-0 end-0"
+                                    style="
+                                        margin-top: -10px;
+                                        margin-right: -10px;
+                                    "
+                                    onclick="window.location.reload()"
+                                    aria-label="Close"
+                                ></button>
+                                <h4 class="text-center f-w-500 mb-3 mt-4">
+                                    Verifikasi OTP
+                                </h4>
+                                <p class="text-center text-muted mb-4">
+                                    Kami telah mengirimkan 6-digit kode OTP ke
+                                    nomor WhatsApp Anda.
+                                </p>
+                                <form id="otp-form">
+                                    <div
+                                        class="d-flex justify-content-center gap-2 mb-4"
+                                        id="reg-otp-inputs"
+                                    >
+                                        <input
+                                            type="text"
+                                            class="form-control text-center rotp-input"
+                                            maxlength="1"
+                                            style="
+                                                width: 45px;
+                                                height: 50px;
+                                                font-size: 1.5rem;
+                                                font-weight: bold;
+                                            "
+                                            required
+                                            autofocus
+                                        />
+                                        <input
+                                            type="text"
+                                            class="form-control text-center rotp-input"
+                                            maxlength="1"
+                                            style="
+                                                width: 45px;
+                                                height: 50px;
+                                                font-size: 1.5rem;
+                                                font-weight: bold;
+                                            "
+                                            required
+                                        />
+                                        <input
+                                            type="text"
+                                            class="form-control text-center rotp-input"
+                                            maxlength="1"
+                                            style="
+                                                width: 45px;
+                                                height: 50px;
+                                                font-size: 1.5rem;
+                                                font-weight: bold;
+                                            "
+                                            required
+                                        />
+                                        <input
+                                            type="text"
+                                            class="form-control text-center rotp-input"
+                                            maxlength="1"
+                                            style="
+                                                width: 45px;
+                                                height: 50px;
+                                                font-size: 1.5rem;
+                                                font-weight: bold;
+                                            "
+                                            required
+                                        />
+                                        <input
+                                            type="text"
+                                            class="form-control text-center rotp-input"
+                                            maxlength="1"
+                                            style="
+                                                width: 45px;
+                                                height: 50px;
+                                                font-size: 1.5rem;
+                                                font-weight: bold;
+                                            "
+                                            required
+                                        />
+                                        <input
+                                            type="text"
+                                            class="form-control text-center rotp-input"
+                                            maxlength="1"
+                                            style="
+                                                width: 45px;
+                                                height: 50px;
+                                                font-size: 1.5rem;
+                                                font-weight: bold;
+                                            "
+                                            required
+                                        />
+                                    </div>
+                                    <div
+                                        id="reg-otp-error"
+                                        class="text-danger text-center small mb-3 fw-bold hidden"
+                                    ></div>
+                                    <input type="hidden" id="reg-otp-val" />
+                                    <input
+                                        type="hidden"
+                                        id="reg-otp"
+                                        name="otp"
+                                        required
+                                    />
+                                    <div class="text-center mt-3 mb-3">
+                                        <p
+                                            class="text-muted mb-1"
+                                            id="otp-timer-text"
+                                        >
+                                            Kirim ulang kode dalam
+                                            <span
+                                                id="otp-timer"
+                                                class="fw-bold text-primary"
+                                                >120</span
+                                            >
+                                            detik
+                                        </p>
+                                        <button
+                                            type="button"
+                                            class="btn btn-sm btn-outline-primary w-100 disabled"
+                                            id="btn-resend-otp"
+                                        >
+                                            Minta Ulang Kode
+                                        </button>
+                                    </div>
+                                    <div class="d-grid mt-4">
+                                        <button
+                                            type="submit"
+                                            class="btn btn-success hidden"
+                                            id="btn-verify"
+                                        >
+                                            Verifikasi Akun
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/static/js/api.js?v=174"></script>
+        <script src="/static/js/pages/auth.js?v=174"></script>
+        <script>
+            function formatWA(input) {
+                let val = input.value.replace(/\D/g, "");
+                if (val.startsWith("0")) {
+                    val = val.substring(1);
+                }
+                let formatted = "";
+                if (val.length > 0) {
+                    formatted += val.substring(0, 3);
+                    if (val.length > 3) {
+                        formatted += "-" + val.substring(3, 7);
+                        if (val.length > 7) {
+                            formatted += "-" + val.substring(7, 15);
+                        }
+                    }
+                }
+                input.value = formatted;
+            }
+
+            function toggleEye(elem, targetId) {
+                const input = document.getElementById(targetId);
+                const confirmInput = document.getElementById(
+                    "reg-password-confirm",
+                );
+
+                if (input.type === "password") {
+                    input.type = "text";
+                    if (confirmInput && targetId === "reg-password")
+                        confirmInput.type = "text";
+                    elem.innerHTML =
+                        '<i data-lucide="eye-off" class="fs-5"></i>';
+                } else {
+                    input.type = "password";
+                    if (confirmInput && targetId === "reg-password")
+                        confirmInput.type = "password";
+                    elem.innerHTML = '<i data-lucide="eye" class="fs-5"></i>';
+                }
+                lucide.createIcons();
+            }
+        </script>
+        <script>
+            lucide.createIcons();
+        </script>
+        <script src="/assets/js/plugins/apexcharts.min.js"></script>
+        <script src="/assets/js/plugins/popper.min.js"></script>
+        <script src="/assets/js/plugins/simplebar.min.js"></script>
+        <script src="/assets/js/plugins/bootstrap.min.js"></script>
+        <script src="/assets/js/fonts/custom-font.js"></script>
+        <script src="/assets/js/script.js"></script>
+        <script src="/assets/js/theme.js"></script>
+        <script src="/assets/js/plugins/feather.min.js"></script>
+        <script>
+            if (typeof layout_caption_change === "function")
+                layout_caption_change("true");
+            if (typeof layout_rtl_change === "function")
+                layout_rtl_change("false");
+            if (typeof preset_change === "function") preset_change("preset-1");
+        </script>
+    </body>
+</html>
+
+

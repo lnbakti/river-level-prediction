@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Detail Sistem Error | Water Level System</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" name="viewport"/>
+<link href="/assets/fonts/inter/inter.css" id="main-font-link" rel="stylesheet"/>
+<link href="/assets/fonts/tabler-icons.min.css" rel="stylesheet"/>
+<link href="/assets/css/style.css?v=174" id="main-style-link" rel="stylesheet"/>
+<link href="data:," rel="icon"/>
+</head>
+<body data-pc-layout="vertical" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-theme="light">
+<div id="sidebar-container"></div>
+<div id="header-container"></div>
+<div class="pc-container">
+<div class="pc-content">
+
+                <div class="row mb-5 align-items-center">
+                    <div class="col-12 d-flex align-items-center justify-content-between" style="padding: 0 48px !important;">
+                        <div class="d-flex align-items-center gap-2">
+                            <h3 class="m-0 fw-bolder text-dark" style="letter-spacing: -0.3px;">Detail Sistem Error</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-12" style="padding: 0 48px !important;">
+
+        <div class="mb-5">
+<h5 class="fw-bold mb-4 text-dark border-bottom border-secondary border-opacity-25 pb-2">Informasi Sistem</h5>
+<div class="row gy-4 gx-5">
+<div class="col-sm-6">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Tanggal</span>
+<span class="fs-5 fw-bolder text-dark" id="detail-error-tanggal">-</span>
+</div>
+<div class="col-sm-6">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Pukul</span>
+<span class="fs-5 fw-bolder text-dark" id="detail-error-pukul">-</span>
+</div>
+</div>
+</div>
+<div class="mb-5">
+<h5 class="fw-bold mt-5 mb-4 text-dark border-bottom border-secondary border-opacity-25 pb-2">Status & Pesan Error</h5>
+<div class="row gy-4 gx-5">
+<div class="col-sm-12">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Status Alat</span>
+<div id="detail-error-status-badge"></div>
+</div>
+<div class="col-sm-12">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Pesan Error</span>
+<div class="p-3 bg-light rounded text-dark mt-2 text-danger" id="detail-error-message" style="white-space: pre-wrap; border-left: 4px solid var(--bs-danger); font-family: monospace;">-</div>
+</div>
+</div>
+</div>
+
+
+                        <div class="mt-5 mb-4 d-flex justify-content-end align-items-center">
+                            <a href="/notifications/error" class="btn btn-secondary px-4 py-2 fw-bold d-flex align-items-center gap-2 shadow-sm" style="border-radius: 8px;">
+                                <i class="ti ti-arrow-left"></i> Kembali
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+</div>
+</div>
+<div id="footer-container"></div>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/static/js/api.js?v=174"></script>
+
+
+
+<script>
+(() => {
+    const dataStr = sessionStorage.getItem('detailErrorData');
+    if (!dataStr) {
+        document.querySelector('.pc-content').innerHTML = '<div class="alert alert-danger">Data tidak ditemukan.</div>';
+        return;
+    }
+    const ds = JSON.parse(dataStr);
+    
+    document.getElementById("detail-error-tanggal").textContent = ds.tanggal || "-";
+    document.getElementById("detail-error-pukul").textContent = ds.pukul || "-";
+    document.getElementById("detail-error-message").textContent = ds.log || "-";
+    
+    const badge = document.getElementById("detail-error-status-badge");
+    if (badge) {
+        badge.innerHTML = `<span class="badge ${ds.statusClass} px-3 py-2 fs-6 rounded-pill">${ds.statusLabel}</span>`;
+    }
+
+    const msgBox = document.getElementById("detail-error-message");
+    if (msgBox) {
+        if (ds.statusClass.includes("success")) msgBox.style.borderLeftColor = "var(--bs-success)";
+        else if (ds.statusClass.includes("danger")) msgBox.style.borderLeftColor = "var(--bs-danger)";
+        else if (ds.statusClass.includes("warning")) msgBox.style.borderLeftColor = "var(--bs-warning)";
+        else msgBox.style.borderLeftColor = "var(--bs-secondary)";
+    }
+})();
+</script>
+<script src="/static/js/layout.js?v=174"></script>
+<script src="/assets/js/plugins/bootstrap.min.js"></script>
+<script src="/assets/js/script.js"></script>
+</body>
+</html>

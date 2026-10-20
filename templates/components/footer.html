@@ -1,0 +1,133 @@
+﻿<footer
+    class="pc-footer border-top mt-4 pb-3 pt-4"
+    style="
+        border-top: 1px solid var(--pc-sidebar-border) !important;
+        background: var(--pc-header-background);
+    "
+>
+    <div class="footer-wrapper container-fluid px-4">
+        <div class="row gy-4">
+            <!-- Kolom 1: Tentang Sistem -->
+            <div class="col-md-5 col-lg-4">
+                <h5 class="fw-bold text-dark mb-3">
+                    <i class="ti ti-shield-check me-2"></i>Sistem Prediksi
+                    Ketinggian Air Sungai
+                </h5>
+                <p class="text-muted small mb-2" style="line-height: 1.6">
+                    Portal monitoring ketinggian air sungai dan curah hujan
+                    berbasis <i>Internet of Things</i> (IoT). Bekerja 24 jam
+                    non-stop untuk memberikan informasi keadaan sungai kepada
+                    masyarakat sekitar secara<i>real-time</i>.
+                </p>
+                <div class="d-flex align-items-center gap-2 mt-3">
+                    <span
+                        class="badge bg-light-success text-success border border-success border-opacity-25 rounded-pill px-3 shadow-sm"
+                        ><i class="ti ti-server me-1"></i>Server Online</span
+                    >
+                    <span
+                        class="badge bg-light-primary text-primary border border-primary border-opacity-25 rounded-pill px-3 shadow-sm"
+                        ><i class="ti ti-brand-whatsapp me-1"></i>Notifikasi
+                        Aktif</span
+                    >
+                </div>
+            </div>
+
+            <!-- Kolom 2: Kontak Darurat -->
+            <div class="col-md-3 col-lg-4">
+                <h6 class="fw-bold mb-3 text-dark">Kontak Darurat Pusat</h6>
+                <ul class="list-unstyled mb-0 small text-muted">
+                    <li class="mb-2 d-flex align-items-center">
+                        <i class="ti ti-phone-call text-danger me-2"></i
+                        >Panggilan Darurat: <strong> 112</strong>
+                    </li>
+                    <li class="mb-2 d-flex align-items-center">
+                        <i class="ti ti-ambulance text-danger me-2"></i>Ambulans
+                        / Medis: <strong> 119</strong>
+                    </li>
+                    <li class="mb-2 d-flex align-items-center">
+                        <i class="ti ti-lifebuoy text-warning me-2"></i>SAR /
+                        Basarnas: <strong> 115</strong>
+                    </li>
+                    <li class="mb-2 d-flex align-items-center">
+                        <i class="ti ti-firetruck text-danger me-2"></i>Pemadam
+                        Kebakaran: <strong> 113</strong>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Kolom 3: Panduan Indikator -->
+            <div class="col-md-4 col-lg-4">
+                <h6 class="fw-bold mb-3 text-dark">
+                    Panduan Status Ketinggian Air
+                </h6>
+                <div class="d-flex flex-column gap-2 small">
+                    <div
+                        class="d-flex align-items-center p-2 rounded bg-light-success border border-success border-opacity-25"
+                    >
+                        <span
+                            class="badge bg-success me-2 rounded-pill px-3 shadow-sm"
+                            style="width: 65px"
+                            >AMAN</span
+                        >
+                        <span class="text-muted"
+                            >Tinggi air normal (< 10 cm)</span
+                        >
+                    </div>
+                    <div
+                        class="d-flex align-items-center p-2 rounded bg-light-warning border border-warning border-opacity-25"
+                    >
+                        <span
+                            class="badge bg-warning me-2 rounded-pill px-3 shadow-sm"
+                            style="width: 65px"
+                            >WASPADA</span
+                        >
+                        <span class="text-muted"
+                            >Air meningkat (10 - 14.9 cm)</span
+                        >
+                    </div>
+                    <div
+                        class="d-flex align-items-center p-2 rounded bg-light-danger border border-danger border-opacity-25"
+                    >
+                        <span
+                            class="badge bg-danger me-2 rounded-pill px-3 shadow-sm"
+                            style="width: 65px"
+                            >BAHAYA</span
+                        >
+                        <span class="text-muted"
+                            >Potensi banjir tinggi (â‰¥ 15 cm)</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-4 border-secondary border-opacity-25" />
+
+        <!-- Copyright Bar -->
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="m-0 small text-muted">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    <strong>River Water Level System</strong>. Dikembangkan
+                    untuk keselamatan bersama.
+                </p>
+            </div>
+            <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                <p class="m-0 small text-muted">(Terhubung IoT)</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+window.addEventListener('error', function(e) {
+    alert("GLOBAL ERROR: " + e.message + " at " + e.filename + ":" + e.lineno);
+});
+window.addEventListener('unhandledrejection', function(e) {
+    alert("UNHANDLED PROMISE: " + e.reason);
+});
+</script>

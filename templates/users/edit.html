@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>Edit Pengguna | Water Level System</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" name="viewport"/>
+<link href="/assets/fonts/inter/inter.css" id="main-font-link" rel="stylesheet"/>
+<link href="/assets/fonts/tabler-icons.min.css" rel="stylesheet"/>
+<link href="/assets/css/style.css?v=174" id="main-style-link" rel="stylesheet"/>
+<link href="data:," rel="icon"/>
+</head>
+<body data-pc-layout="vertical" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-theme="light">
+<div id="sidebar-container"></div>
+<div id="header-container"></div>
+<div class="pc-container">
+<div class="pc-content">
+
+                <div class="row mb-5 align-items-center">
+                    <div class="col-12 d-flex align-items-center justify-content-between" style="padding: 0 48px !important;">
+                        <div class="d-flex align-items-center gap-2">
+                            
+                            <h3 class="m-0 fw-bolder text-dark" style="letter-spacing: -0.3px;">Edit Pengguna</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-12" style="padding: 0 48px !important;">
+    
+<form id="form-edit-user">
+    <div class="mb-5">
+        <h5 class="fw-bold mb-4 text-dark border-bottom border-secondary border-opacity-25 pb-2">Informasi Akun</h5>
+        <div class="row gy-4 gx-5">
+            <div class="col-sm-6">
+                <label class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Nama Lengkap</label>
+                <input type="text" class="form-control fs-6" id="edit-user-fullname" required>
+            </div>
+            <div class="col-sm-6">
+                <label class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Username</label>
+                <input type="text" class="form-control fs-6" id="edit-user-username" required>
+            </div>
+            <div class="col-sm-6">
+                <label class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Status Keanggotaan</label>
+                <select class="form-select fs-6" id="edit-user-status">
+                    <option value="Aktif">Aktif</option>
+                    <option value="Nonaktif">Nonaktif</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="mb-5">
+        <h5 class="fw-bold mt-5 mb-4 text-dark border-bottom border-secondary border-opacity-25 pb-2">Informasi Kontak &amp; Alamat</h5>
+        <div class="row gy-4 gx-5">
+            <div class="col-sm-6">
+                <label class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Nomor WhatsApp</label>
+                <input type="text" class="form-control fs-6" id="edit-user-wa" oninput="window.handlePhoneInput(event)" placeholder="Contoh: 081234567890">
+                <small class="text-muted d-block mt-1">Masukkan angka saja. Awalan 0 atau 62 otomatis diformat.</small>
+            </div>
+            <div class="col-sm-12">
+                <label class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Alamat</label>
+                <textarea class="form-control fs-6" id="edit-user-address" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-5 mb-4 d-flex justify-content-end align-items-center gap-3">
+        <a href="/users" class="btn btn-secondary px-4 py-2 fw-bold d-flex align-items-center gap-2 shadow-sm" style="border-radius: 8px;">
+            <i class="ti ti-x"></i> Batal
+        </a>
+        <button type="submit" class="btn btn-primary px-4 py-2 fw-bold d-flex align-items-center gap-2 shadow-sm" id="btn-save-user" style="border-radius: 8px;">
+            <i class="ti ti-device-floppy"></i> Simpan Perubahan
+        </button>
+    </div>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- We don\'t implement full edit/delete logic here, we just use session storage to pass back to main page if needed, or redirect. Wait, actually we can just redirect back to /users and tell the user to use mobile or we implement the API logic. For simplicity, we trigger alert or keep it simple. -->
+
+
+<script>
+(() => {
+    const dataStr = sessionStorage.getItem('detailUserData');
+    if (!dataStr) {
+        document.querySelector('.pc-content').innerHTML = '<div class="alert alert-danger">Data tidak ditemukan.</div>';
+        return;
+    }
+    const ds = JSON.parse(dataStr);
+    
+    // Populate form
+    document.getElementById("edit-user-fullname").value = ds.fullname !== "-" ? ds.fullname : "";
+    document.getElementById("edit-user-username").value = ds.raw_username || (ds.username ? ds.username.replace(/^@/, "") : "");
+    document.getElementById("edit-user-status").value = ds.raw_status === "Aktif" ? "Aktif" : "Nonaktif";
+    
+    // Convert formatted WA back to simple input format (starts with 0 is better for edit)
+    let rawWa = ds.raw_wa || (ds.wa ? ds.wa.replace(/\D/g, "") : "");
+    if (rawWa.startsWith("62")) rawWa = "0" + rawWa.substring(2);
+    else if (rawWa.startsWith("+62")) rawWa = "0" + rawWa.substring(3);
+    
+    document.getElementById("edit-user-wa").value = rawWa;
+    document.getElementById("edit-user-address").value = ds.address !== "-" ? ds.address : "";
+
+    // Handle submit
+    document.getElementById("form-edit-user").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const btnSave = document.getElementById("btn-save-user");
+        const originalText = btnSave.innerHTML;
+        btnSave.innerHTML = '<i class="ti ti-loader"></i> Menyimpan...';
+        btnSave.disabled = true;
+        
+        try {
+            let waVal = document.getElementById("edit-user-wa").value.replace(/\D/g, "");
+            if (waVal.startsWith("0")) waVal = "62" + waVal.substring(1);
+            
+            const payload = {
+                username: document.getElementById("edit-user-username").value.replace(/^@/, ""),
+                nama_lengkap: document.getElementById("edit-user-fullname").value,
+                no_wa: waVal,
+                alamat: document.getElementById("edit-user-address").value,
+                status_akun: document.getElementById("edit-user-status").value
+            };
+            
+            await api.updateUser(ds.id, payload);
+            
+            alert("Data pengguna berhasil diperbarui!");
+            // Refresh ds in sessionStorage with new data
+            ds.raw_wa = waVal;
+            ds.raw_status = payload.status_akun;
+            ds.raw_username = payload.username;
+            ds.username = "@" + payload.username;
+            ds.fullname = payload.nama_lengkap || "-";
+            ds.address = payload.alamat || "-";
+            ds.wa = window.formatWaNumber(waVal);
+            ds.statusText = payload.status_akun === "Aktif" ? "Aktif" : "Nonaktif";
+            ds.statusClass = payload.status_akun === "Aktif" ? "bg-success" : "bg-danger";
+            
+            sessionStorage.setItem("detailUserData", JSON.stringify(ds));
+            
+            window.location.href = "/users";
+        } catch (err) {
+            alert("Gagal menyimpan data: " + err.message);
+            btnSave.innerHTML = originalText;
+            btnSave.disabled = false;
+        }
+    });
+})();
+</script>
+<script src="/static/js/api.js?v=174"></script>
+<script src="/static/js/layout.js?v=174"></script>
+<script src="/assets/js/plugins/bootstrap.min.js"></script>
+<script src="/assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+
+# Databases & Cache
+*.sqlite
+*.sqlite3
+*.db
+.test.db
+
+# Logs & Runtime
+*.log
+logs/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Arduino / PlatformIO / Embedded Builds
+build/
+.pio/
+*.bin
+*.elf
+*.hex
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/

@@ -1,0 +1,95 @@
+﻿<nav class="pc-sidebar">
+    <div class="navbar-wrapper">
+        <div class="m-header d-flex align-items-center justify-content-center" style="height: 74px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <a href="/" class="b-brand text-decoration-none d-flex align-items-center gap-2">
+                <div class="d-flex align-items-center gap-2">
+                    <h4 class="m-0 fw-bold text-white text-nowrap" style="letter-spacing: -0.5px; font-size: 1.1rem;">River Water Level</h4>
+                    <span id="system-iot-status-dot" class="rounded-circle bg-secondary shadow-sm" style="width: 10px; height: 10px; display: inline-block;"></span>
+                </div>
+            </a>
+        </div>
+
+        <div class="navbar-content">
+            <ul class="pc-navbar">
+                <li class="pc-item">
+                    <a href="/" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="ti ti-dashboard"></i>
+                        </span>
+                        <span class="pc-mtext">Dashboard</span>
+                    </a>
+                </li>
+                <li class="pc-item admin-only">
+                    <a href="/users" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="ti ti-users"></i>
+                        </span>
+                        <span class="pc-mtext">Kelola Pengguna</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="/monitoring" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="ti ti-device-analytics"></i>
+                        </span>
+                        <span class="pc-mtext">Riwayat Monitoring</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="/prediction" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="ti ti-chart-dots"></i>
+                        </span>
+                        <span class="pc-mtext">Riwayat Prediksi</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="/notifications/warning" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="ti ti-bell"></i>
+                        </span>
+                        <span class="pc-mtext">Riwayat Peringatan</span>
+                    </a>
+                </li>
+                <li class="pc-item admin-only">
+                    <a href="/notifications/error" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="ti ti-alert-circle"></i>
+                        </span>
+                        <span class="pc-mtext">Riwayat Sistem</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Bottom Tab Navigation -->
+<div class="mobile-tab-nav">
+    <a href="/" class="tab-item" id="tab-dashboard">
+        <i class="ti ti-dashboard"></i>
+        <span>Dashboard</span>
+    </a>
+    <a href="/monitoring" class="tab-item" id="tab-monitoring">
+        <i class="ti ti-device-analytics"></i>
+        <span>Riwayat</span>
+    </a>
+    <a href="/prediction" class="tab-item" id="tab-prediction">
+        <i class="ti ti-chart-dots"></i>
+        <span>Prediksi</span>
+    </a>
+    <a href="/notifications/warning" class="tab-item" id="tab-warning">
+        <i class="ti ti-bell"></i>
+        <span>Peringatan</span>
+    </a>
+    <a href="/notifications/error" class="tab-item admin-only" id="tab-error">
+        <i class="ti ti-alert-circle"></i>
+        <span>Sistem</span>
+    </a>
+    <a href="/users" class="tab-item admin-only" id="tab-users">
+        <i class="ti ti-users"></i>
+        <span>Pengguna</span>
+    </a>
+</div>
+
+

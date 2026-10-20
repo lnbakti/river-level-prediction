@@ -1,0 +1,620 @@
+﻿<!doctype html>
+<html lang="en">
+    <head>
+        <title>Riwayat Prediksi | Water Level System</title>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"
+        />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        
+
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <link
+            rel="stylesheet"
+            href="/assets/fonts/inter/inter.css"
+            id="main-font-link"
+        />
+        <link rel="stylesheet" href="/assets/fonts/tabler-icons.min.css" />
+        <link rel="stylesheet" href="/assets/fonts/feather.css" />
+        <link rel="stylesheet" href="/assets/fonts/fontawesome.css" />
+        <link rel="stylesheet" href="/assets/fonts/material.css" />
+        <link
+            rel="stylesheet"
+            href="/assets/css/style.css?v=174"
+            id="main-style-link"
+        />
+        <link rel="stylesheet" href="/assets/css/style-preset.css" />
+
+        <style>
+            /* Fix untuk ukuran icon Lucide agar menyesuaikan dengan container / font-size */
+            .lucide {
+                width: 1em !important;
+                height: 1em !important;
+            }
+        </style>
+    <link rel="icon" href="data:,">
+    </head>
+    <body
+        data-pc-preset="preset-1"
+        data-pc-sidebar-caption="true"
+        data-pc-layout="vertical"
+        data-pc-direction="ltr"
+        data-pc-theme_contrast=""
+        data-pc-theme="light"
+    >
+        <div class="loader-bg">
+            <div class="loader-track">
+                <div class="loader-fill"></div>
+            </div>
+        </div>
+        <div id="sidebar-container"></div>
+        <div id="header-container"></div>
+        <div class="pc-container">
+            <div class="pc-content">
+                
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body p-4 pb-3">
+                                <!-- Unified Toolbar -->
+                                <div
+                                    class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-3 mb-4"
+                                >
+                                    <!-- Left Side: Title & Row Limit -->
+                                    <div
+                                        class="d-flex flex-wrap align-items-center gap-3"
+                                    >
+                                        <h5
+                                            class="mb-0 fw-bold d-none d-md-block"
+                                        >
+                                            Data Log Sensor
+                                        </h5>
+                                    </div>
+
+                                    <!-- Right Side -->
+                                    <div
+                                        class="d-flex align-items-center gap-2 align-self-end align-self-sm-auto ms-auto"
+                                    >
+                                        <!-- Export Button -->
+                                        <button
+                                            class="btn btn-sm bg-transparent border-0 text-success p-1 shadow-none d-none flex-shrink-0"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#exportModal"
+                                            title="Ekspor Data"
+                                        >
+                                            <i
+                                                data-lucide="download"
+                                                style="
+                                                    width: 20px;
+                                                    height: 20px;
+                                                "
+                                            ></i>
+                                        </button>
+
+                                        <!-- Filter (Dropdown) -->
+                                        <div class="dropdown flex-shrink-0">
+                                            <button
+                                                class="btn btn-sm bg-transparent border-0 text-secondary p-1 shadow-none"
+                                                type="button"
+                                                data-bs-toggle="dropdown"
+                                                aria-expanded="false"
+                                                data-bs-auto-close="outside"
+                                                title="Filter Lanjutan"
+                                            >
+                                                <i
+                                                    data-lucide="sliders-horizontal"
+                                                    style="
+                                                        width: 20px;
+                                                        height: 20px;
+                                                    "
+                                                ></i>
+                                            </button>
+                                            <div
+                                                class="dropdown-menu dropdown-menu-end p-3 shadow-lg border-0"
+                                                style="
+                                                    width: 280px;
+                                                    max-width: 90vw;
+                                                    box-shadow: 0 4px 15px
+                                                        rgba(0, 0, 0, 0.1) !important;
+                                                "
+                                            >
+                                                <h6
+                                                    class="dropdown-header px-0 text-dark fw-bold mb-1"
+                                                >
+                                                    Jumlah Baris
+                                                </h6>
+                                                <select
+                                                    id="filter-limit"
+                                                    class="form-select form-select-sm mb-3 shadow-none"
+                                                >
+                                                    <option value="10" selected>
+                                                        10 Baris
+                                                    </option>
+                                                    <option value="25">
+                                                        25 Baris
+                                                    </option>
+                                                    <option value="50">
+                                                        50 Baris
+                                                    </option>
+                                                    <option value="100">
+                                                        100 Baris
+                                                    </option>
+                                                </select>
+                                                <h6
+                                                    class="dropdown-header px-0 text-dark fw-bold mb-1"
+                                                >
+                                                    Rentang Waktu
+                                                </h6>
+                                                <div
+                                                    class="input-group input-group-sm mb-3"
+                                                >
+                                                    <input
+                                                        id="filter-date-start"
+                                                        type="date"
+                                                        class="form-control shadow-none"
+                                                    />
+                                                    <span
+                                                        class="input-group-text bg-light px-2"
+                                                        >-</span
+                                                    >
+                                                    <input
+                                                        id="filter-date-end"
+                                                        type="date"
+                                                        class="form-control shadow-none"
+                                                    />
+                                                </div>
+                                                <h6
+                                                    class="dropdown-header px-0 text-dark fw-bold mb-1"
+                                                >
+                                                    Status Sensor
+                                                </h6>
+                                                <select
+                                                    id="filter-status"
+                                                    class="form-select form-select-sm mb-3 shadow-none"
+                                                >
+                                                    <option>
+                                                        Semua Status
+                                                    </option>
+                                                    <option>Aman</option>
+                                                    <option>Waspada</option>
+                                                    <option>Darurat</option>
+                                                </select>
+                                                <button
+                                                    id="btn-apply-filter"
+                                                    class="btn btn-primary btn-sm w-100"
+                                                >
+                                                    Terapkan
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <!-- Search -->
+                                        <div
+                                            class="position-relative"
+                                            style="max-width: 200px"
+                                        >
+                                            <i
+                                                data-lucide="search"
+                                                class="position-absolute text-muted"
+                                                style="
+                                                    left: 10px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    width: 14px;
+                                                    height: 14px;
+                                                "
+                                            ></i>
+                                            <input
+                                                id="filter-search"
+                                                type="text"
+                                                class="form-control form-control-sm shadow-none border"
+                                                style="
+                                                    padding-left: 32px;
+                                                    border-radius: 6px;
+                                                "
+                                                placeholder="Cari..."
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Toolbar -->
+
+                                <style>
+                                    .table-flush-edges th:first-child,
+                                    .table-flush-edges td:first-child {
+                                        border-left: none !important;
+                                        padding-left: 1.5rem !important;
+                                    }
+                                    .table-flush-edges th:last-child,
+                                    .table-flush-edges td:last-child {
+                                        border-right: none !important;
+                                        padding-right: 1.5rem !important;
+                                    }
+                                </style>
+                                <div class="table-responsive">
+                                    <table
+                                        class="table table-hover table-flush-edges mb-0 table-mobile-cards monitoring-table"
+                                    >
+                                        <thead class="table-light">
+                                            <tr
+                                                class="text-muted"
+                                                style="
+                                                    font-size: 0.75rem;
+                                                    letter-spacing: 0.5px;
+                                                "
+                                            >
+                                                <th
+                                                    class="text-center"
+                                                    style="width: 50px"
+                                                >
+                                                    No
+                                                </th>
+                                                <th
+                                                    class="text-center d-none d-md-table-cell"
+                                                >
+                                                    Tanggal
+                                                </th>
+                                                <th
+                                                    class="text-center d-none d-md-table-cell"
+                                                >
+                                                    Pukul
+                                                </th>
+                                                <th
+                                                    class="text-center d-md-none"
+                                                >
+                                                    Waktu
+                                                </th>
+
+                                                <th class="text-center">
+                                                    Prediksi (30m)
+                                                </th>
+                                                <th class="text-center">
+                                                    Status
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="sensor-table-body"></tbody>
+                                    </table>
+                                </div>
+                                <div class="card-footer bg-white pt-4 pb-3">
+                                    <div
+                                        class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between text-center gap-3"
+                                    >
+                                        <span
+                                            class="text-muted small"
+                                            id="sensor-table-info"
+                                            >Menampilkan - sampai - dari -
+                                            riwayat data</span
+                                        >
+                                        <ul
+                                            class="pagination pagination-sm mb-0 shadow-sm"
+                                            id="pagination-container"
+                                        >
+                                            <!-- Pagination -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="modal fade"
+                id="exportModal"
+                tabindex="-1"
+                aria-labelledby="exportModalLabel"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog modal-dialog-centered">
+                    <div
+                        class="modal-content shadow-lg border-0"
+                        style="
+                            background: rgba(255, 255, 255, 0.95);
+                            backdrop-filter: blur(12px);
+                        "
+                    >
+                        <div class="modal-header border-bottom-0 pb-0">
+                            <h5
+                                class="modal-title fw-bold"
+                                id="exportModalLabel"
+                            >
+                                <i
+                                    data-lucide="file-output"
+                                    class="text-success me-2"
+                                ></i
+                                >Konfigurasi Ekspor
+                            </h5>
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
+                        </div>
+                        <div class="modal-body pt-3">
+                            <p class="text-muted small mb-4">
+                                Pilih kolom (data) yang ingin Anda masukkan ke
+                                dalam file hasil ekspor:
+                            </p>
+                            <div class="row g-3 mb-4">
+                                <div class="col-sm-6">
+                                    <div class="form-check form-switch mb-2">
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            id="colWaktu"
+                                            checked
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            for="colWaktu"
+                                            >Waktu Kejadian</label
+                                        >
+                                    </div>
+                                    <div class="form-check form-switch mb-2">
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            id="colAktual"
+                                            checked
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            for="colAktual"
+                                            >Data Aktual (cm)</label
+                                        >
+                                    </div>
+                                    <div class="form-check form-switch mb-2">
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            id="colHujan"
+                                            checked
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            for="colHujan"
+                                            >Status Hujan</label
+                                        >
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-check form-switch mb-2">
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            id="colPrediksi"
+                                            checked
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            for="colPrediksi"
+                                            >Prediksi LSTM (cm)</label
+                                        >
+                                    </div>
+                                    <div class="form-check form-switch mb-2">
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            id="colStatus"
+                                            checked
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            for="colStatus"
+                                            >Status Peringatan</label
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-2 p-3 bg-light rounded border">
+                                <label
+                                    class="form-label text-muted small fw-bold mb-2 d-block"
+                                    >Pilih Format File</label
+                                >
+                                <div class="d-flex flex-wrap gap-4">
+                                    <div class="form-check">
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="exportFormat"
+                                            id="formatExcel"
+                                            checked
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            for="formatExcel"
+                                            ><i
+                                                data-lucide="file-spreadsheet"
+                                                class="text-success"
+                                            ></i>
+                                            Excel</label
+                                        >
+                                    </div>
+                                    <div class="form-check">
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="exportFormat"
+                                            id="formatPdf"
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            for="formatPdf"
+                                            ><i
+                                                data-lucide="file-text"
+                                                class="text-danger"
+                                            ></i>
+                                            PDF</label
+                                        >
+                                    </div>
+                                    <div class="form-check">
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="exportFormat"
+                                            id="formatCsv"
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            for="formatCsv"
+                                            ><i
+                                                data-lucide="file-code"
+                                                class="text-warning"
+                                            ></i>
+                                            CSV</label
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-top-0 pt-0">
+                            <button
+                                type="button"
+                                class="btn btn-light-secondary shadow-none"
+                                data-bs-dismiss="modal"
+                            >
+                                Batal
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-success shadow-sm"
+                            >
+                                <i data-lucide="download" class="me-2"></i
+                                >Ekspor Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer MUST be outside pc-container because pc-footer class handles its own sidebar margin -->
+        <div id="footer-container"></div>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+        <script src="/static/js/api.js?v=174"></script>
+        <script src="/static/js/pages/prediction.js?v=174"></script>
+        <script src="/static/js/layout.js?v=174"></script>
+        <script>
+            lucide.createIcons();
+        </script>
+        <script src="/assets/js/plugins/apexcharts.min.js"></script>
+        <script src="/assets/js/plugins/popper.min.js"></script>
+        <script src="/assets/js/plugins/simplebar.min.js"></script>
+        <script src="/assets/js/plugins/bootstrap.min.js"></script>
+        <script src="/assets/js/fonts/custom-font.js"></script>
+        <script src="/assets/js/script.js"></script>
+        <script src="/assets/js/theme.js"></script>
+        <script src="/assets/js/plugins/feather.min.js"></script>
+        <script>
+            if (typeof layout_caption_change === "function")
+                layout_caption_change("true");
+            if (typeof layout_rtl_change === "function")
+                layout_rtl_change("false");
+            if (typeof preset_change === "function") preset_change("preset-1");
+        </script>
+
+        <!-- Modal Detail Monitoring untuk Mobile -->
+        <div
+            class="modal fade"
+            id="detailMonitoringModal"
+            tabindex="-1"
+            aria-labelledby="detailMonitoringModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div
+                    class="modal-content shadow-lg border-0"
+                    style="border-radius: 16px"
+                >
+                    <div class="modal-header border-bottom-0 pb-0">
+                        <h5
+                            class="modal-title fw-bold"
+                            id="detailMonitoringModalLabel"
+                        >
+                            Detail Prediksi
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex flex-column gap-3">
+                            <div class="border-bottom pb-2">
+                                <small
+                                    class="text-muted d-block text-uppercase fw-bold mb-1"
+                                    style="font-size: 0.7rem"
+                                    >Tanggal</small
+                                >
+                                <span
+                                    class="fw-medium text-dark"
+                                    id="modal-monitoring-tanggal"
+                                    >-</span
+                                >
+                            </div>
+                            <div class="border-bottom pb-2">
+                                <small
+                                    class="text-muted d-block text-uppercase fw-bold mb-1"
+                                    style="font-size: 0.7rem"
+                                    >Pukul</small
+                                >
+                                <span
+                                    class="fw-medium text-dark"
+                                    id="modal-monitoring-pukul"
+                                    >-</span
+                                >
+                            </div>
+                            <div class="border-bottom pb-2">
+                                <small
+                                    class="text-muted d-block text-uppercase fw-bold mb-1"
+                                    style="font-size: 0.7rem"
+                                    >Dibuat</small
+                                >
+                                <span
+                                    class="fw-medium text-dark"
+                                    id="modal-monitoring-waktu-prediksi"
+                                    >-</span
+                                >
+                            </div>
+                            <div class="border-bottom pb-2">
+                                <small
+                                    class="text-muted d-block text-uppercase fw-bold mb-1"
+                                    style="font-size: 0.7rem"
+                                    >Prediksi (30 Menit)</small
+                                >
+                                <span
+                                    class="fw-bold text-warning"
+                                    id="modal-monitoring-prediksi"
+                                    >- cm</span
+                                >
+                            </div>
+                            <div>
+                                <small
+                                    class="text-muted d-block text-uppercase fw-bold mb-1"
+                                    style="font-size: 0.7rem"
+                                    >Status</small
+                                >
+                                <div id="modal-monitoring-status-wrapper">
+                                    <span
+                                        class="badge bg-secondary rounded-pill px-3 shadow-sm"
+                                        id="modal-monitoring-status"
+                                        >-</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+

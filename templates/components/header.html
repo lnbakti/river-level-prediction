@@ -1,0 +1,614 @@
+<header class="pc-header">
+    <div
+        class="header-wrapper d-flex align-items-center justify-content-between"
+    >
+        <div class="d-flex align-items-center gap-1 gap-sm-2">
+            <!-- Sidebar Hamburger Menu -->
+            <a href="#" class="text-secondary d-none d-md-flex" id="sidebar-hide"
+                style="cursor: pointer; padding: 6px; align-items: center; border-radius: 6px; text-decoration: none;"
+                onmouseover="this.style.backgroundColor='#F3F4F6';"
+                onmouseout="this.style.backgroundColor='transparent';"
+            >
+                <i class="ti ti-menu-2" style="font-size: 1.5rem; color: #4B5563;"></i>
+            </a>
+            <!-- Page Title injected by JS -->
+            
+            
+            
+            <!-- Page Title injected by JS -->
+            <h4 id="header-page-title" class="m-0 ms-1 fw-bold text-dark text-truncate" style="font-size: 1.15rem; letter-spacing: -0.3px; max-width: 400px; color: #1E293B !important;"></h4>
+
+
+        </div>
+
+        <!-- Header Right Area (Time, Bell, Profile) -->
+        <div class="d-flex align-items-center gap-1 gap-sm-2">
+            <!-- System Time Clock -->
+            <div
+                class="d-flex align-items-center px-1 px-sm-2 py-1 rounded shadow-sm border"
+                style="
+                    background-color: #ffffff;
+                    border-color: #e3e8ef !important;
+                "
+            >
+                <i
+                    class="ti ti-clock text-muted me-1"
+                    style="font-size: clamp(0.85rem, 2.5vw, 1rem)"
+                ></i>
+                <div
+                    class="fw-bold text-dark"
+                    id="system-time"
+                    style="
+                        font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+                        font-variant-numeric: tabular-nums;
+                        letter-spacing: 0.5px;
+                    "
+                >
+                    --:--:--
+                </div>
+            </div>
+
+            <ul
+                class="list-unstyled d-flex align-items-center mb-0 gap-1 gap-sm-2"
+            >
+                <!-- Notification Bell -->
+                <li
+                    class="dropdown pc-h-item admin-only"
+                    id="header-notification-item"
+                >
+                    <a
+                        class="pc-head-link dropdown-toggle arrow-none me-0 d-flex align-items-center justify-content-center"
+                        data-bs-toggle="dropdown"
+                        data-bs-offset="0,15"
+                        href="#"
+                        role="button"
+                        aria-haspopup="false"
+                        aria-expanded="false"
+                        style="width: 32px; height: 32px; border-radius: 50%"
+                    >
+                        <i class="ti ti-bell" style="font-size: 1.15rem"></i>
+                        <span
+                            class="badge bg-success pc-h-badge"
+                            id="header-notification-badge"
+                        ></span>
+                    </a>
+                    <div
+                        class="dropdown-menu dropdown-notification dropdown-menu-end shadow-lg border-0"
+                        style="border-radius: 12px; margin-top: 15px !important"
+                    >
+                        <div
+                            class="dropdown-header d-flex align-items-center justify-content-between p-3 border-bottom"
+                        >
+                            <h5 class="m-0 fw-bold fs-6">Notifikasi</h5>
+                            <a
+                                href="#"
+                                class="btn btn-link btn-sm p-0 text-decoration-none"
+                                id="btn-mark-all-read"
+                                >Tandai Semua Dibaca</a
+                            >
+                        </div>
+                        <div
+                            class="dropdown-body text-wrap header-notification-scroll position-relative"
+                            style="max-height: 350px; overflow-y: auto"
+                        >
+                            <div id="header-notification-items"></div>
+                            <div
+                                id="header-notification-empty"
+                                class="text-center text-muted py-4"
+                            >
+                                Tidak ada notifikasi terbaru.
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Profile Dropdown -->
+                <li class="dropdown pc-h-item" style="position: relative">
+                    <a
+                        class="dropdown-toggle arrow-none text-decoration-none d-flex align-items-center justify-content-center"
+                        data-bs-toggle="dropdown"
+                        data-bs-offset="0,15"
+                        href="#"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        style="padding: 0; margin: 0; display: inline-flex"
+                    >
+                        <div
+                            id="header-user-initial"
+                            class="avtar bg-light-primary text-primary fw-bold rounded-circle shadow-sm d-flex align-items-center justify-content-center"
+                            style="
+                                width: 32px;
+                                height: 32px;
+                                font-size: 1rem;
+                                cursor: pointer;
+                                border: 2px solid #eef2f6;
+                                line-height: 1;
+                                padding: 0;
+                            "
+                        >
+                            ?
+                        </div>
+                    </a>
+                    <div
+                        class="dropdown-menu dropdown-menu-end shadow-lg border-0 dropdown-user-profile"
+                        style="border-radius: 12px; margin-top: 15px !important"
+                    >
+                        <div
+                            class="dropdown-header d-flex flex-row align-items-center justify-content-start p-3 border-bottom gap-2"
+                        >
+                            <div
+                                id="dropdown-user-avatar"
+                                class="avtar bg-light-primary text-primary fw-bold rounded-circle shadow-sm d-flex align-items-center justify-content-center"
+                                style="
+                                    width: 40px;
+                                    height: 40px;
+                                    font-size: 1.1rem;
+                                    flex-shrink: 0;
+                                    border: 2px solid #eef2f6;
+                                "
+                            >
+                                ?
+                            </div>
+                            <div
+                                class="d-flex flex-column text-start"
+                                style="overflow: hidden"
+                            >
+                                <h6
+                                    class="mb-0 fw-bold"
+                                    id="header-user-name"
+                                    style="
+                                        font-size: 0.95rem;
+                                        white-space: nowrap;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        max-width: 120px;
+                                    "
+                                >
+                                    Memuat...
+                                </h6>
+                                <small
+                                    class="text-muted"
+                                    id="header-user-role"
+                                    style="
+                                        font-size: 0.75rem;
+                                        white-space: nowrap;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        max-width: 120px;
+                                    "
+                                    >Role</small
+                                >
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <a
+                                href="/profile"
+                                class="dropdown-item py-2 px-3 rounded d-flex align-items-center mb-1"
+                            >
+                                <i class="ti ti-user me-2 fs-5"></i>
+                                <span>Profil Saya</span>
+                            </a>
+                            <a
+                                href="#!"
+                                class="dropdown-item py-2 px-3 rounded text-danger d-flex align-items-center"
+                                id="header-logout"
+                            >
+                                <i class="ti ti-power me-2 fs-5"></i>
+                                <span>Keluar</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<!-- Modal Notifikasi Header -->
+<div
+    class="modal fade"
+    id="headerNotificationModal"
+    tabindex="-1"
+    aria-labelledby="headerNotificationModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog mx-3 mx-sm-auto mt-5" style="max-width: 400px">
+        <div
+            class="modal-content shadow-lg border-0"
+            style="border-radius: 16px"
+        >
+            <div class="modal-header border-bottom-0 pb-0">
+                <h5
+                    class="modal-title fw-bold"
+                    id="headerNotificationModalLabel"
+                >
+                    Detail Notifikasi
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex flex-column gap-3">
+                    <div class="border-bottom pb-2">
+                        <small
+                            class="text-muted d-block text-uppercase fw-bold mb-1"
+                            style="font-size: 0.7rem"
+                            >Waktu</small
+                        >
+                        <div class="fw-bold text-dark" id="header-notif-time">
+                            -
+                        </div>
+                    </div>
+                    <div class="border-bottom pb-2">
+                        <small
+                            class="text-muted d-block text-uppercase fw-bold mb-1"
+                            style="font-size: 0.7rem"
+                            >Status</small
+                        >
+                        <div class="mt-1" id="header-notif-status">-</div>
+                    </div>
+                    <div>
+                        <small
+                            class="text-muted d-block text-uppercase fw-bold mb-1"
+                            style="font-size: 0.7rem"
+                            >Pesan</small
+                        >
+                        <div
+                            class="text-dark"
+                            id="header-notif-message"
+                            style="font-size: 0.85rem"
+                        >
+                            -
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    :root,
+    :root[data-pc-theme="light"] {
+        --bs-body-bg: #eef2f6 !important;
+        --pc-sidebar-background: #f8fafc !important;
+        --pc-header-background: #f8fafc !important;
+        --pc-sidebar-border: 1px solid #e3e8ef !important;
+        --pc-header-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+    }
+    .pc-footer {
+        background: #f8fafc !important;
+        border-top: 1px solid #e3e8ef !important;
+    }
+    .pc-header {
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 1030 !important;
+    }
+    .pc-sidebar {
+        top: 74px !important;
+        height: calc(100vh - 74px) !important;
+        z-index: 1029 !important;
+    }
+    .header-wrapper {
+        padding: 0 15px !important;
+    }
+
+    @media (min-width: 576px) {
+        .dropdown-notification {
+            min-width: 320px !important;
+        }
+        .dropdown-user-profile {
+            min-width: 200px !important;
+        }
+    }
+    @media (max-width: 575.98px) {
+        .dropdown-notification {
+            width: 300px !important;
+            max-width: calc(100vw - 30px) !important;
+            right: -10px !important;
+            left: auto !important;
+        }
+        .dropdown-user-profile {
+            width: 200px !important;
+            max-width: calc(100vw - 30px) !important;
+        }
+    }
+    /* Force user text wrap if name is long */
+
+    @media (max-width: 1024px) {
+        .pc-sidebar ~ .pc-header {
+            left: 0 !important;
+        }
+    }
+    @media (max-width: 767.98px) {
+        .table-mobile-cards thead {
+            display: none !important;
+        }
+        .table-mobile-cards tbody,
+        .table-mobile-cards tr,
+        .table-mobile-cards td {
+            display: block;
+            width: 100%;
+        }
+        .table-mobile-cards tbody {
+            display: grid;
+            gap: 12px;
+            padding: 10px 0;
+            background: transparent;
+        }
+        .table-mobile-cards tr {
+            display: grid !important;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e3e8ef;
+            padding: 14px 16px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .table-mobile-cards tr:last-child {
+            border-bottom: none;
+        }
+        .table-mobile-cards tr:active {
+            background: #f8fafc;
+        }
+        .table-mobile-cards td {
+            padding: 0 !important;
+            border: none !important;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+        .table-mobile-cards td[data-label="No"],
+        .table-mobile-cards td[data-label="Selisih"],
+        .table-mobile-cards td[data-label="Username"] {
+            display: none !important;
+        }
+
+        /* DASHBOARD & MONITORING TABLE CSS - FIXED! */
+        .table-mobile-cards.monitoring-table td[data-label="Selisih"],
+        .table-mobile-cards td[data-label="No"],
+        .table-mobile-cards td[data-label="Aksi"] {
+            display: none !important;
+        }
+
+        .table-mobile-cards.monitoring-table tr {
+            display: flex !important;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .table-mobile-cards.monitoring-table tr td[data-label="Waktu"] {
+            width: 100%;
+            border-bottom: 1px dashed #e3e8ef !important;
+            padding-bottom: 10px !important;
+            margin-bottom: 8px;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .table-mobile-cards.monitoring-table tr td[data-label="Status"] {
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            align-items: flex-end;
+            padding: 0 !important;
+            margin: 0;
+        }
+        .table-mobile-cards.monitoring-table td[data-label="Status"]::before {
+            display: none !important;
+        }
+        .table-mobile-cards.monitoring-table td[data-label="Waktu"]::before {
+            display: none !important;
+        }
+
+        /* To align values side by side in mobile monitoring/dashboard */
+        .table-mobile-cards.monitoring-table tr td[data-label="Tinggi Air"],
+        .table-mobile-cards.monitoring-table tr td[data-label="Curah Hujan"],
+        .table-mobile-cards.monitoring-table tr td[data-label="Prediksi (30m)"] {
+            flex: 1 1 30%;
+            align-items: center !important;
+            text-align: center !important;
+        }
+
+        /* Warning Table Mobile App Layout */
+        .table-mobile-cards.warning-table td[data-label="No"],
+        .table-mobile-cards.warning-table td[data-label="Nomor WA"],
+        .table-mobile-cards.warning-table td[data-label="Aksi"] {
+            display: none !important;
+        }
+
+        .table-mobile-cards.warning-table tr {
+            display: grid !important;
+            grid-template-columns: 1fr auto;
+            gap: 4px;
+            padding: 12px 16px !important;
+        }
+        .table-mobile-cards.warning-table tr td[data-label="Nama Kontak"] {
+            grid-column: 1;
+            grid-row: span 2;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column !important;
+        }
+        .table-mobile-cards.warning-table tr td[data-label="Waktu Kirim"] {
+            grid-column: 2;
+            grid-row: 1;
+            position: static !important;
+            width: auto !important;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0;
+            align-items: flex-end;
+            justify-content: flex-start;
+            flex-direction: column !important;
+            text-align: right;
+            border-bottom: none !important;
+        }
+        .table-mobile-cards.warning-table tr td[data-label="Status"] {
+            grid-column: 2;
+            grid-row: 2;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0;
+            align-items: center;
+            justify-content: flex-end;
+            flex-direction: row !important;
+        }
+        .table-mobile-cards.warning-table td::before {
+            display: none !important;
+        }
+
+        /* Users Table Mobile App Layout */
+        .table-mobile-cards.users-table td[data-label="No"],
+        .table-mobile-cards.users-table td[data-label="Username"],
+        .table-mobile-cards.users-table td[data-label="WhatsApp"],
+        .table-mobile-cards.users-table td[data-label="Aksi"] {
+            display: none !important;
+        }
+
+        .table-mobile-cards.users-table tr td[data-label="Nama Lengkap"] {
+            grid-column: 1;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-direction: column !important;
+        }
+        .table-mobile-cards.users-table tr td[data-label="Status"] {
+            grid-column: 2;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0;
+            align-items: center;
+            justify-content: flex-end;
+            flex-direction: row !important;
+        }
+        .table-mobile-cards.users-table td::before {
+            display: none !important;
+        }
+
+        /* Error Table Mobile App Layout */
+        .table-mobile-cards.error-table tr {
+            row-gap: 0 !important;
+        }
+        .table-mobile-cards.error-table td[data-label="No"],
+        .table-mobile-cards.error-table td[data-label="Pesan Error"],
+        .table-mobile-cards.error-table td[data-label="Pesan"],
+        .table-mobile-cards.error-table td[data-label="Aksi"] {
+            display: none !important;
+        }
+
+        .table-mobile-cards.error-table tr td[data-label="Waktu"] {
+            grid-column: 1;
+            grid-row: 1;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0;
+            align-items: flex-start;
+            flex-direction: column !important;
+        }
+        .table-mobile-cards.error-table tr td[data-label="Status Alat"],
+        .table-mobile-cards.error-table tr td[data-label="Status"] {
+            grid-column: 2;
+            grid-row: 1;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0;
+            align-items: center;
+            justify-content: flex-end;
+            flex-direction: row !important;
+        }
+        .table-mobile-cards.error-table td::before {
+            display: none !important;
+        }
+
+        .table-mobile-cards td::before {
+            content: attr(data-label);
+            font-size: 0.65rem;
+            color: #94a3b8;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .table-mobile-cards tr td[data-label="Waktu"],
+        .table-mobile-cards tr td[data-label="Waktu Kirim"],
+        .table-mobile-cards tr td[data-label="Nama Lengkap"] {
+            grid-column: span 2;
+            border-bottom: 1px dashed #e3e8ef !important;
+            padding-bottom: 10px !important;
+            margin-bottom: 4px;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .table-mobile-cards tr td[data-label="Waktu"]::before,
+        .table-mobile-cards tr td[data-label="Waktu Kirim"]::before,
+        .table-mobile-cards tr td[data-label="Nama Lengkap"]::before {
+            display: none !important;
+        }
+
+        .table-mobile-cards tr td[data-label="Aksi"] {
+            display: none !important;
+        }
+
+        /* Modal Mobile Adjustments */
+        .modal-dialog {
+            margin: 1.25rem 1.5rem !important;
+        }
+        .modal-content {
+            border-radius: 16px !important;
+        }
+        .modal-body {
+            padding: 1.25rem 1rem !important;
+        }
+        .modal-body .avtar {
+            width: 65px !important;
+            height: 65px !important;
+            border-width: 2px !important;
+            margin-bottom: 0.75rem !important;
+        }
+        .modal-body .avtar i {
+            font-size: 2rem !important;
+        }
+        .modal-body .avtar span {
+            font-size: 2.2rem !important;
+        }
+        .modal-body h4 {
+            font-size: 1.15rem !important;
+            margin-bottom: 0.25rem !important;
+        }
+        .modal-body p.text-muted {
+            font-size: 0.8rem !important;
+            margin-bottom: 0.75rem !important;
+        }
+        .modal-header h5.modal-title {
+            font-size: 1.05rem !important;
+        }
+        .modal-body .list-group-item {
+            padding: 0.4rem 0 !important;
+            font-size: 0.85rem;
+        }
+        .modal-body .list-group-item i {
+            font-size: 1rem !important;
+        }
+    }
+</style>
+
+

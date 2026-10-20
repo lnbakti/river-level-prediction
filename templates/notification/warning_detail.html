@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Detail Peringatan | Water Level System</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" name="viewport"/>
+<link href="/assets/fonts/inter/inter.css" id="main-font-link" rel="stylesheet"/>
+<link href="/assets/fonts/tabler-icons.min.css" rel="stylesheet"/>
+<link href="/assets/css/style.css?v=174" id="main-style-link" rel="stylesheet"/>
+<link href="data:," rel="icon"/>
+</head>
+<body data-pc-layout="vertical" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-theme="light">
+<div id="sidebar-container"></div>
+<div id="header-container"></div>
+<div class="pc-container">
+<div class="pc-content">
+
+                <div class="row mb-5 align-items-center">
+                    <div class="col-12 d-flex align-items-center justify-content-between" style="padding: 0 48px !important;">
+                        <div class="d-flex align-items-center gap-2">
+                            <h3 class="m-0 fw-bolder text-dark" style="letter-spacing: -0.3px;">Detail Peringatan</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-12" style="padding: 0 48px !important;">
+
+        <div class="mb-5">
+<h5 class="fw-bold mb-4 text-dark border-bottom border-secondary border-opacity-25 pb-2">Informasi Peringatan</h5>
+<div class="row gy-4 gx-5">
+<div class="col-sm-6">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Tanggal</span>
+<span class="fs-5 fw-bolder text-dark" id="detail-notif-tanggal">-</span>
+</div>
+<div class="col-sm-6">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Pukul</span>
+<span class="fs-5 fw-bolder text-dark" id="detail-notif-pukul">-</span>
+</div>
+<div class="col-sm-6">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Nomor WA (Tujuan)</span>
+<span class="fs-5 fw-bolder text-dark" id="detail-notif-wa">-</span>
+</div>
+<div class="col-sm-6">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Nama (Username)</span>
+<span class="fs-5 fw-bolder text-dark"><span id="detail-notif-name">-</span> (<span id="detail-notif-username">-</span>)</span>
+</div>
+</div>
+</div>
+<div class="mb-5">
+<h5 class="fw-bold mt-5 mb-4 text-dark border-bottom border-secondary border-opacity-25 pb-2">Status & Pesan</h5>
+<div class="row gy-4 gx-5">
+<div class="col-sm-12">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Status Pengiriman</span>
+<div id="detail-notif-status-badge"></div>
+</div>
+<div class="col-sm-12">
+<span class="text-secondary text-uppercase fw-bold d-block mb-2 detail-label" style="font-size: 0.8rem;">Isi Pesan</span>
+<div class="p-3 bg-light rounded text-dark mt-2" id="detail-notif-message" style="white-space: pre-wrap; border-left: 4px solid var(--bs-primary);">-</div>
+</div>
+</div>
+</div>
+
+                        <div class="mt-5 mb-4 d-flex justify-content-end align-items-center">
+                            <a href="/notifications/warning" class="btn btn-secondary px-4 py-2 fw-bold d-flex align-items-center gap-2 shadow-sm" style="border-radius: 8px;">
+                                <i class="ti ti-arrow-left"></i> Kembali
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+</div>
+</div>
+<div id="footer-container"></div>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/static/js/api.js?v=174"></script>
+
+
+
+<script>
+(() => {
+    const dataStr = sessionStorage.getItem('detailNotifData');
+    if (!dataStr) {
+        document.querySelector('.pc-content').innerHTML = '<div class="alert alert-danger">Data tidak ditemukan.</div>';
+        return;
+    }
+    const ds = JSON.parse(dataStr);
+    
+    document.getElementById("detail-notif-tanggal").textContent = ds.tanggal || "-";
+    document.getElementById("detail-notif-pukul").textContent = ds.pukul || "-";
+    document.getElementById("detail-notif-wa").textContent = ds.wa || "-";
+    document.getElementById("detail-notif-name").textContent = ds.name || "-";
+    document.getElementById("detail-notif-username").textContent = ds.username || "-";
+    document.getElementById("detail-notif-message").textContent = ds.message || "-";
+    
+    const badge = document.getElementById("detail-notif-status-badge");
+    if (badge) {
+        badge.innerHTML = `<span class="badge ${ds.statusClass} px-3 py-2 fs-6 rounded-pill">${ds.statusLabel}</span>`;
+    }
+
+    const msgBox = document.getElementById("detail-notif-message");
+    if (msgBox) {
+        if (ds.statusClass.includes("success")) msgBox.style.borderLeftColor = "var(--bs-success)";
+        else if (ds.statusClass.includes("danger")) msgBox.style.borderLeftColor = "var(--bs-danger)";
+        else if (ds.statusClass.includes("warning")) msgBox.style.borderLeftColor = "var(--bs-warning)";
+        else msgBox.style.borderLeftColor = "var(--bs-secondary)";
+    }
+})();
+</script>
+<script src="/static/js/layout.js?v=174"></script>
+<script src="/assets/js/plugins/bootstrap.min.js"></script>
+<script src="/assets/js/script.js"></script>
+</body>
+</html>

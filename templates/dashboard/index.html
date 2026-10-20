@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Home | Water Level Dashboard Template</title>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"
+        />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="description"
+            content="Water Level is a trending dashboard template built with the Bootstrap 5 design framework. It is available in multiple technologies, including Bootstrap, React, Vue, CodeIgniter, Angular, .NET, and more."
+        />
+        <meta
+            name="keywords"
+            content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard"
+        />
+        <meta name="author" content="Phoenixcoded" />
+
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <link
+            rel="stylesheet"
+            href="/assets/fonts/inter/inter.css"
+            id="main-font-link"
+        />
+        <link rel="stylesheet" href="/assets/fonts/tabler-icons.min.css" />
+        <link rel="stylesheet" href="/assets/fonts/feather.css" />
+        <link rel="stylesheet" href="/assets/fonts/fontawesome.css" />
+        <link rel="stylesheet" href="/assets/fonts/material.css" />
+        <link
+            rel="stylesheet"
+            href="/assets/css/style.css?v=174"
+            id="main-style-link"
+        />
+        <link rel="stylesheet" href="/assets/css/style-preset.css" />
+
+        <style>
+            /* Fix untuk ukuran icon Lucide agar menyesuaikan dengan container / font-size */
+            .lucide {
+                width: 1em !important;
+                height: 1em !important;
+            }
+        </style>
+    <link rel="icon" href="data:,">
+    </head>
+    <body
+        data-pc-preset="preset-1"
+        data-pc-sidebar-caption="true"
+        data-pc-layout="vertical"
+        data-pc-direction="ltr"
+        data-pc-theme_contrast=""
+        data-pc-theme="light"
+    >
+        <div class="loader-bg">
+            <div class="loader-track">
+                <div class="loader-fill"></div>
+            </div>
+        </div>
+        <div id="sidebar-container"></div>
+        <div id="header-container"></div>
+        <div class="pc-container">
+            <div class="pc-content">
+                
+                <!-- User/Public Welcome Banner -->
+                <div class="row user-only mb-4">
+                    <div class="col-12">
+                        <div
+                            class="alert bg-light-primary text-primary shadow-sm border-0 d-flex align-items-center"
+                            role="alert"
+                        >
+                            <i class="ti ti-info-circle f-24 me-3"></i>
+                            <div>
+                                <h5
+                                    class="alert-heading fw-bold mb-1 text-primary"
+                                >
+                                    Selamat Datang,
+                                    <span id="welcome-user-name">Pengguna</span
+                                    >!
+                                </h5>
+                                <p
+                                    class="mb-0 text-primary"
+                                    style="font-size: 0.95rem"
+                                >
+                                    Halaman ini menyajikan informasi ketinggian
+                                    air dan curah hujan secara
+                                    <i>real-time</i> langsung dari sensor IoT di
+                                    lapangan. Gunakan papan status dan grafik di
+                                    bawah untuk memantau keselamatan lingkungan
+                                    Anda.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colored Minimalist Grid Layout -->
+                <div class="row mb-4 align-items-stretch">
+                    
+                    <!-- Card 1: Status -->
+                    <div class="col-6 col-xl-3 col-md-6 mb-3 mb-xl-0">
+                        <div class="card border-0 shadow-sm h-100 text-white" id="public-status-card" style="border-radius: 12px; transition: all 0.3s ease; background-color: #6c757d;">
+                            <div class="card-body p-3 p-md-4 d-flex flex-column justify-content-between">
+                                <div class="d-flex justify-content-between align-items-start mb-2 mb-md-3">
+                                    <div>
+                                        <p class="text-white text-opacity-75 text-uppercase fw-bold mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">Status Peringatan</p>
+                                        <h3 class="fw-bolder fs-5 fs-md-3 mb-0 text-white" id="public-status-title">Memuat...</h3>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center" id="public-status-icon-bg" style="width: 48px; height: 48px;">
+                                        <i class="ti ti-shield-check text-white text-opacity-75" style="font-size: 40px;" id="public-status-icon"></i>
+                                    </div>
+                                </div>
+                                <p class="text-white text-opacity-75 small mb-0 lh-base text-truncate" id="public-status-desc">Menunggu data sensor sungai...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Aktual -->
+                    <div class="col-6 col-xl-3 col-md-6 mb-3 mb-xl-0">
+                        <div class="card border-0 shadow-sm h-100 text-white" style="border-radius: 12px; background: linear-gradient(135deg, #4680ff, #3b6bd6);">
+                            <div class="card-body p-3 p-md-4 d-flex flex-column justify-content-between">
+                                <div class="d-flex justify-content-between align-items-start mb-2 mb-md-3">
+                                    <div>
+                                        <p class="text-white text-opacity-75 text-uppercase fw-bold mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">Tinggi Aktual</p>
+                                        <h3 class="fw-bolder fs-5 fs-md-3 text-white mb-0" id="public-status-waterlevel">-- cm</h3>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                        <i class="ti ti-ripple text-white text-opacity-75" style="font-size: 40px;"></i>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center mt-2">
+                                    <span class="badge bg-white text-primary px-2 py-1 me-2 fw-bold">Saat Ini</span>
+                                    <span class="text-white text-opacity-75 small mb-0 d-inline-block text-truncate" style="max-width: 100%;">Pembacaan nyata sensor</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Prediksi -->
+                    <div class="col-6 col-xl-3 col-md-6">
+                        <div class="card border-0 shadow-sm h-100 text-white" style="border-radius: 12px; background: linear-gradient(135deg, #ff8f00, #d47700);">
+                            <div class="card-body p-3 p-md-4 d-flex flex-column justify-content-between">
+                                <div class="d-flex justify-content-between align-items-start mb-2 mb-md-3">
+                                    <div>
+                                        <p class="text-white text-opacity-75 text-uppercase fw-bold mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">Prediksi AI</p>
+                                        <h3 class="fw-bolder fs-5 fs-md-3 text-white mb-0" id="public-status-waterlevel-main">-- cm</h3>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                        <i class="ti ti-chart-line text-white text-opacity-75" style="font-size: 40px;"></i>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center mt-2">
+                                    <span class="badge bg-white text-warning px-2 py-1 me-2 fw-bold" style="color: #ff8f00 !important;">+30 Mnt</span>
+                                    <span class="text-white text-opacity-75 small mb-0 d-inline-block text-truncate" style="max-width: 100%;">Estimasi ke depan</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Hujan -->
+                    <div class="col-6 col-xl-3 col-md-6">
+                        <div class="card border-0 shadow-sm h-100 text-white" style="border-radius: 12px; background: linear-gradient(135deg, #0dcaf0, #0aa3c2);">
+                            <div class="card-body p-3 p-md-4 d-flex flex-column justify-content-between">
+                                <div class="d-flex justify-content-between align-items-start mb-2 mb-md-3">
+                                    <div>
+                                        <p class="text-white text-opacity-75 text-uppercase fw-bold mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">Intensitas Hujan</p>
+                                        <h3 class="fw-bolder fs-5 fs-md-3 text-white mb-0" id="public-status-rain">-- mm</h3>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                        <i class="ti ti-cloud-rain text-white text-opacity-75" style="font-size: 40px;"></i>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center mt-2">
+                                    <span class="badge bg-white text-info px-2 py-1 me-2 fw-bold">Lokal</span>
+                                    <span class="text-white text-opacity-75 small mb-0 d-inline-block text-truncate" style="max-width: 100%;">Curah hujan area</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-12" id="charts-column">
+                        <div class="card h-100">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <h5 class="mb-0">Grafik Aktual vs Prediksi</h5>
+                            </div>
+                            <div class="card-body px-2 px-md-4 py-3 py-md-4">
+                                <div id="combined-graph"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- end pc-content -->
+        </div>
+        <!-- end pc-container -->
+
+        <!-- Footer MUST be outside pc-container because pc-footer class handles its own sidebar margin -->
+        <div id="footer-container"></div>
+
+        <script src="/static/js/api.js?v=177"></script>
+        <script src="/static/js/pages/dashboard.js?v=177"></script>
+        <script src="/static/js/layout.js?v=177"></script>
+        <script>
+            lucide.createIcons();
+        </script>
+        <script src="/assets/js/plugins/apexcharts.min.js"></script>
+        <script src="/assets/js/plugins/popper.min.js"></script>
+        <script src="/assets/js/plugins/simplebar.min.js"></script>
+        <script src="/assets/js/plugins/bootstrap.min.js"></script>
+        <script src="/assets/js/fonts/custom-font.js"></script>
+        <script src="/assets/js/script.js"></script>
+        <script src="/assets/js/theme.js"></script>
+        <script src="/assets/js/plugins/feather.min.js"></script>
+        <script>
+            if (typeof layout_caption_change === "function")
+                layout_caption_change("true");
+            if (typeof layout_rtl_change === "function")
+                layout_rtl_change("false");
+            if (typeof preset_change === "function") preset_change("preset-1");
+        </script>
+
+        <!-- Modal Detail Dashboard untuk Mobile -->
+        <div
+            class="modal fade"
+            id="detailDashboardModal"
+            tabindex="-1"
+            aria-labelledby="detailDashboardModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div
+                    class="modal-content shadow-lg border-0"
+                    style="border-radius: 16px"
+                >
+                    <div class="modal-header border-bottom-0 pb-2">
+                        <h5
+                            class="modal-title fw-bold"
+                            id="detailDashboardModalLabel"
+                        >
+                            Detail Riwayat
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex flex-column gap-3">
+                            <div class="border-bottom pb-2">
+                                <small
+                                    class="text-muted d-block text-uppercase fw-bold mb-1"
+                                    style="font-size: 0.7rem"
+                                    >Tanggal</small
+                                >
+                                <span
+                                    class="fw-medium text-dark"
+                                    id="modal-dashboard-tanggal"
+                                    >-</span
+                                >
+                            </div>
+                            <div class="border-bottom pb-2">
+                                <small
+                                    class="text-muted d-block text-uppercase fw-bold mb-1"
+                                    style="font-size: 0.7rem"
+                                    >Pukul</small
+                                >
+                                <span
+                                    class="fw-medium text-dark"
+                                    id="modal-dashboard-pukul"
+                                    >-</span
+                                >
+                            </div>
+                            <div class="border-bottom pb-2">
+                                <small
+                                    class="text-muted d-block text-uppercase fw-bold mb-1"
+                                    style="font-size: 0.7rem"
+                                    >Tinggi Aktual</small
+                                >
+                                <span
+                                    class="fw-bold text-primary"
+                                    id="modal-dashboard-aktual"
+                                    >- cm</span
+                                >
+                            </div>
+                            <div class="border-bottom pb-2">
+                                <small
+                                    class="text-muted d-block text-uppercase fw-bold mb-1"
+                                    style="font-size: 0.7rem"
+                                    >Curah Hujan</small
+                                >
+                                <span
+                                    class="fw-bold text-info"
+                                    id="modal-dashboard-hujan"
+                                    >- mm</span
+                                >
+                            </div>
+                            <div class="border-bottom pb-2">
+                                <small
+                                    class="text-muted d-block text-uppercase fw-bold mb-1"
+                                    style="font-size: 0.7rem"
+                                    >Prediksi</small
+                                >
+                                <span
+                                    class="fw-bold text-dark"
+                                    id="modal-dashboard-prediksi"
+                                    >- cm</span
+                                >
+                            </div>
+                            <div>
+                                <small
+                                    class="text-muted d-block text-uppercase fw-bold mb-1"
+                                    style="font-size: 0.7rem"
+                                    >Status</small
+                                >
+                                <div id="modal-dashboard-status">-</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
